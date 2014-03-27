@@ -163,7 +163,7 @@ class GDriver < ::Middleman::Extension
       empty_directory("data/cache")
       cache_file = ::File.join("data/cache", "#{locale}_#{page}.yml")
       time = Time.now
-      if !::File.exist?(cache_file) || ::File.mtime(cache_file) < (time - 120)
+      if !::File.exist?(cache_file) || ::File.mtime(cache_file) < (time - cache_duration)
         result = session.collection_by_title(banner).subcollection_by_title(season).subcollection_by_title(campaign).file_by_title(locale).worksheet_by_title(page).list.to_hash_array.to_yaml
         ::File.open(cache_file,"w"){ |f| f << result }
       end
