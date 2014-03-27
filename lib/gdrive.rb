@@ -160,7 +160,7 @@ class GDriver < ::Middleman::Extension
     end
 
     def gdrive(locale, page)
-      empty_directory("data/cache")
+      # empty_directory("data/cache")
       cache_file = ::File.join("data/cache", "#{locale}_#{page}.yml")
       time = Time.now
       if !::File.exist?(cache_file) || ::File.mtime(cache_file) < (time - cache_duration)
